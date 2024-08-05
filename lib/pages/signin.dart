@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:eqait_test/pages/homepage.dart';
 
 class SignIn extends StatefulWidget {
   @override
@@ -7,6 +8,8 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   bool _isPasswordVisible = false;
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -50,8 +53,9 @@ class _SignInState extends State<SignIn> {
                       ],
                     ),
                     const SizedBox(height: 30),
-                    const TextField(
-                      decoration: InputDecoration(
+                     TextField(
+                      controller: _usernameController,
+                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: "Email/Username",
                         prefixIcon: Padding(
@@ -66,6 +70,7 @@ class _SignInState extends State<SignIn> {
                     ),
                     const SizedBox(height: 20),
                     TextField(
+                      controller: _passwordController,
                       obscureText: !_isPasswordVisible,
                       decoration: InputDecoration(
                         prefixIcon: const Padding(
@@ -93,27 +98,52 @@ class _SignInState extends State<SignIn> {
                         hintText: "Password",
                       ),
                     ),
-                    const SizedBox(width: double.infinity,), 
+                    const SizedBox(
+                      width: double.infinity,
+                    ),
                     ElevatedButton(
                       style: const ButtonStyle(
                         foregroundColor: WidgetStatePropertyAll(Colors.white),
                         backgroundColor: WidgetStatePropertyAll(Colors.red),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        print("Username: ${_usernameController.text}");
+                        print("Password: ${_passwordController.text}");
+                        if (_usernameController.text == "flutter" &&
+                            _passwordController.text == "123456") {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => SocendPage()),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text('Invalid credentials')),
+                          );
+                        }
+                      },
                       child: const Text("Sign In"),
                     ),
-                   const Expanded(child: SizedBox()),
-               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Image.asset('assets/nt_logo.png', height: 80, width: 80,),
-                  Text("|"),
-                  Image.asset('assets/stc.png', height: 60, width: 60,),
-                  
+                    const Expanded(child: SizedBox()),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Image.asset(
+                          'assets/nt_logo.png',
+                          height: 80,
+                          width: 80,
+                        ),
+                        Text("|"),
+                        Image.asset(
+                          'assets/stc.png',
+                          height: 60,
+                          width: 60,
+                        ),
+                      ],
+                    ),
                   ],
                 ),
-              ],),
-            ),
+              ),
             ),
           ),
         ),

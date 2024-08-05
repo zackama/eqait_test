@@ -65,6 +65,11 @@ flutter:
    - assets/riyadh_landscape.png
    - assets/stc.png
    - assets/user.png
+   - assets/fiber.png
+   - assets/inspection.png
+   - assets/material-management.png
+   - assets/settings.png
+   - assets/surveyor.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -1,6 +1,6 @@
 import 'package:eqait_test/pages/signin.dart';
 import 'package:flutter/material.dart';
-
+import 'package:eqait_test/pages/homepage.dart';
 void main() {
   runApp(HomePage());
 }
